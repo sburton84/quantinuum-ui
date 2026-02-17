@@ -1,6 +1,7 @@
 
-import { NavigationMenuLink, cn } from 'src'
 import React from 'react'
+import { NavigationMenuLink } from 'shadcn/ui/navigation-menu'
+import { cn } from '../../../../utils/cn'
 export const ListItem = React.forwardRef<
   React.ElementRef<'a'>,
   React.ComponentPropsWithoutRef<'a'>
