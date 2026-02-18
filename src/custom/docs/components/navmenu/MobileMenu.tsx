@@ -1,5 +1,4 @@
-
-
+import * as React from 'react'
 import { MenuIcon } from 'lucide-react';
 import { Button } from 'shadcn/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from 'shadcn/ui/dropdown-menu';
@@ -20,14 +19,17 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
     <DropdownMenuTrigger asChild><Button variant='outline' className="w-8 p-0 h-8"> <MenuIcon/></Button></DropdownMenuTrigger>
     <DropdownMenuContent className="max-h-[80vh] overflow-y-auto ml-2" >
         {props.navTextLinks.map(link => {
-            return   <><DropdownMenuItem asChild key={link.title}><a href={link.href}>{link.title}</a>
-            </DropdownMenuItem>
-            {link.dropDown.map(subitem => {
-              return <DropdownMenuItem className="text-xs ml-2 text-muted-foreground last:mb-4" key={subitem.title} asChild ><a  href={subitem.href}>{subitem.title}</a></DropdownMenuItem>
-            })}
-            </>
+            return (
+              <React.Fragment key={link.title}>
+                <DropdownMenuItem asChild><a href={link.href}>{link.title}</a></DropdownMenuItem>
+                {link.dropDown.map(subitem => (
+                  <DropdownMenuItem className="text-xs ml-2 text-muted-foreground last:mb-4" key={`${link.title}-${subitem.href}`} asChild>
+                    <a href={subitem.href}>{subitem.title}</a>
+                  </DropdownMenuItem>
+                ))}
+              </React.Fragment>
+            )
         })}
-        {}
     </DropdownMenuContent>
   </DropdownMenu>
   }

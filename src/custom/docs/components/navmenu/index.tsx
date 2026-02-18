@@ -1,4 +1,5 @@
 'use client'
+import type { ReactNode } from 'react'
 import { NexusLogo } from '../logos/NexusLogo'
 import { SystemsLogo } from '../logos/SystemsLogo'
 import { MobileMenu } from './MobileMenu'
@@ -18,13 +19,13 @@ const navConfig = {
       dropDown: [{
         title: "Guides",
         href: "/systems/guides.html",
-      },{
+      }, {
         title: "Getting Started",
         href: "/systems/trainings/getting_started/getting_started_index.html",
-      },{
+      }, {
         title: "Knowledge Articles",
         href: "/systems/trainings/knowledge_articles/ka_index.html",
-      },{
+      }, {
         title: "Support",
         href: "/systems/support.html",
       }]
@@ -32,7 +33,7 @@ const navConfig = {
       title: 'Nexus',
       href: '/nexus/',
       pathMatch: 'somewhere',
-      logo: <NexusLogo variant="horizontal"  className="h-10 w-48 -mt-1"  />,
+      logo: <NexusLogo variant="horizontal" className="h-10 w-48 -mt-1" />,
       description: "Cloud platform connecting users with hardware and compilation services, alongside associated data.",
       dropDown: [{
         title: 'Guides',
@@ -59,7 +60,7 @@ const navConfig = {
       dropDown: [{
         title: 'Pytket API Docs',
         href: '/tket/api-docs/',
-      },{
+      }, {
         title: 'Pytket User Guide',
         href: '/tket/user-guide/',
       }, {
@@ -74,8 +75,8 @@ const navConfig = {
       }, {
         title: "\u03BBambeq",
         href: "/lambeq/"
-      }, 
-    ]
+      },
+      ]
     }, {
       title: "Solutions",
       href: "",
@@ -85,11 +86,11 @@ const navConfig = {
       dropDown: [{
         title: 'InQuanto',
         href: '/inquanto/',
-      },{
+      }, {
         title: 'Quantum Origin',
         href: "/origin/",
       }
-    ]
+      ]
     }
   ],
 }
@@ -98,21 +99,22 @@ const navConfig = {
 export const NavBar = (props: {
   activePath: string
   enableModeSelector?: boolean
+  children?: ReactNode
 }) => {
   return (
     <div className="bg-background text-foreground border-border sticky top-0 z-[100] w-full border-b text-sm">
       <div className=" bg-background px-3 md:px-4 mx-auto max-w-[90rem] flex h-14 items-center justify-between">
         <div className="mr-4 flex items-center">
           <div className='block md:hidden mr-3'>
-            <MobileMenu {...navConfig}/>
+            <MobileMenu {...navConfig} />
           </div>
           <div className="whitespace-nowrap flex items-center gap-2">
-          <a href="/" aria-label='Quantinuum Documentation' title="Quantinuum Documentation" className='hover:cursor-pointer hover:opacity-50 transition'>
-            <div className='hidden sm:block'><QuantinuumLogo />
-            </div>
-            <div className='block sm:hidden'>
-              <QuantinuumIdent/>
-            </div>
+            <a href="/" aria-label='Quantinuum Documentation' title="Quantinuum Documentation" className='hover:cursor-pointer hover:opacity-50 transition'>
+              <div className='hidden sm:block'><QuantinuumLogo />
+              </div>
+              <div className='block sm:hidden'>
+                <QuantinuumIdent />
+              </div>
             </a>
             <div className="text-muted-foreground text-xs font-medium flex items-center gap-1.5">
               <div className='mx-0.5 text-muted-foreground/50'>|</div><div>Documentation</div>
@@ -121,11 +123,17 @@ export const NavBar = (props: {
           <a href="/" className="ml-4 mr-4 flex items-center space-x-2">
             <span className="hidden font-bold">Quantinuum</span>
           </a>
-       
         </div>
+
+        {props.children ? (
+          <div className="flex flex-1 items-center justify-center px-2 max-w-md">
+            {props.children}
+          </div>
+        ) : null}
+
         <div className="flex items-center gap-5">
           <Navigation activePath={props.activePath} navTextLinks={navConfig.navTextLinks} />
-          {props.enableModeSelector ? <> <div className='w-px h-6 bg-muted-foreground/50'></div><ModeSelector /> </>: null}
+          {props.enableModeSelector ? <> <div className='w-px h-6 bg-muted-foreground/50'></div><ModeSelector /> </> : null}
         </div>
       </div>
     </div>
