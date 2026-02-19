@@ -1,0 +1,2 @@
+import{__rest as e}from"../../../../../node_modules/.pnpm/@rollup_plugin-typescript@8_c851c07fe793be16c2b92f36dbe1f804/node_modules/tslib/tslib.es6.js";import{jsx as r}from"react/jsx-runtime";import t from"react";const o=t.forwardRef((t,o)=>{var m=e(t,["className","type"]);return r("main",Object.assign({className:"container mx-auto py-6 md:py-4",ref:o},{children:m.children}))});export{o as DocsPageLayout};
+//# sourceMappingURL=index.js.map
